@@ -1,3 +1,4 @@
+// JSON MUST LOOK LIKE THIS
 var quizData = {
   "questions": [{
       "text": "Montserrat",
@@ -26,6 +27,7 @@ var quizData = {
   ]
 }
 
+//INITIALISE QUESTIONS COMPONENT
 Vue.component('question', {
   template: `
   <div class="main">
@@ -61,7 +63,9 @@ Vue.component('question', {
       answer: ''
     }
   },
+  // ALL DATAS NEEDED BY THE COMPONENT
   props: ['question', 'question-number', 'all-questions', 'percent'],
+  //FUNCTIONS OF THE COMPONENT (CALLED BY V-ON:CLICK)
   methods: {
     submitAnswer: function() {
       this.$emit('answer', {
@@ -72,6 +76,7 @@ Vue.component('question', {
   }
 });
 
+//INITIALISE APP
 var app = new Vue({
   el: '#app',
   data() {
@@ -89,19 +94,24 @@ var app = new Vue({
       percent : 0,
     }
   },
+  //LOAD JSON
   created() {
     var res = quizData;
     this.questions = res.questions;
     this.allQuestions = res.questions.length;
     this.home = true;
   },
+  //ALL FUNCTIONS USED BY THE APP
   methods: {
     startQuiz() {
       this.home = false;
       this.quiz = true;
     },
+    //CLICK NEXT
     handleAnswer(e) {
+      //PUSH ANSWER
       this.answers[this.currentQuestion] = e.answer;
+      //WHEN LAST QUESTIO
       if ((this.currentQuestion + 1) === this.questions.length) {
         document.getElementById('bar').style.width = "100%";
         // WAIT FOR THE PROGRESS BAR TO FILL CONTAINER TO CHANGE APP PAGE
@@ -116,10 +126,12 @@ var app = new Vue({
         document.getElementById('bar').style.width = this.percent + "%";
       }
     },
+    //CALCULATE SCORE
     handleResults() {
       this.questions.forEach((a, index) => {
         if (this.answers[index] === a.answer) this.correct++;
       });
+      //CHANGE FINAL MESSAGE
       switch (this.correct) {
         case 0:
           this.head = "It Sucks";
@@ -143,6 +155,7 @@ var app = new Vue({
           break;
       }
     },
+    //RELOAD QUIZ
     reload() {
       this.score = false;
       this.home = true;
