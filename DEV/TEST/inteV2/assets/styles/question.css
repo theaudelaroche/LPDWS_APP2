@@ -85,9 +85,14 @@ input[type='radio']:checked+label{
 
 .game-state .btn-container a .arrow-container{
   display: block;
-  height: 20px;
-  width: 20px;
-  background-color: white;
+  height: 30px;
+  width: 30px;
+}
+
+.game-state .btn-container a .arrow-container img{
+  display: block;
+  height: 100%;
+  width: auto;
 }
 
 .game-state .btn-container a{
@@ -165,33 +170,5 @@ input[type='radio']:checked+label{
   input[type='checkbox']:checked+label{
     color: white;
     background-color:#432DFF;
-  }
-
-
-  .game-state .btn-container {
-    box-sizing: border-box;
-    font-family: 'Oswald', sans-serif;
-    font-size: 36px;
-    font-weight: bold;
-    background-color: #FF3E8B;
-    color: white;
-    width: 100%;
-    padding : 20px;
-  }
-
-  .game-state .btn-container a .arrow-container{
-    display: block;
-    height: 20px;
-    width: 20px;
-    background-color: white;
-  }
-
-  .game-state .btn-container a{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: none;
-    color: white;
   }
 }

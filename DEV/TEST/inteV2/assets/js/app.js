@@ -49,7 +49,9 @@ Vue.component('question', {
     <div class="btn-container">
       <a href="#" v-on:click="submitAnswer">
         <span>NEXT</span>
-        <span class="arrow-container"></span>
+        <span class="arrow-container">
+          <img src="assets/images/arrow.png" alt="arrow">
+        </span>
       </a>
     </div>
   </div>
