@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>What Font</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700|Raleway:300,400,500" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <section class="noGame-state home-state" v-if="home">
+          <div class="noGame-container">
+            <h1>You think you've got a designer's eye ?</h1>
+            <p>Test your skills and try to guess which font is displayed !</p>
+          </div>
+          <div class="btn-container">
+            <a href="#" v-on:click="reload">
+              <span>PLAY</span>
+              <span class="arrow-container"></span>
+            </a>
+          </div>
+      </section>
+
+      <section class="game-state" v-if="quiz">
+        <div class="overlay"></div>
+        <div class="main">
+          <header>
+            <span class="question-number">01/04</span>
+          </header>
+          <div class="game-screen">
+            <div class="progress-bar"></div>
+            <div class="question">
+              <img class="font-image" src="" alt="">
+            </div>
+            <div class="answers">
+              <div class="answer">
+                <input type="checkbox" name="" value="" id="answer1">
+                <label for="answer1">OPTION 1</label>
+              </div>
+              <div class="answer">
+                <input type="checkbox" name="" value="" id="answer2">
+                <label for="answer2">OPTION 2</label>
+              </div>
+              <div class="answer">
+                <input type="checkbox" name="" value="" id="answer3">
+                <label for="answer3">OPTION 3</label>
+              </div>
+            </div>
+          </div>
+          <div class="btn-container">
+            <a href="#" v-on:click="reload">
+              <span>NEXT</span>
+              <span class="arrow-container"></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="noGame-state score-state" v-if="score">
+        <div class="noGame-container">
+          <h2>{{correct}}/{{questions.length}}</h2>
+          <h3>{{head}}</h3>
+          <p>{{message}}</p>
+        </div>
+        <div class="btn-container">
+          <a href="#" v-on:click="reload">
+            <span>HOME</span>
+            <span class="arrow-container"></span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

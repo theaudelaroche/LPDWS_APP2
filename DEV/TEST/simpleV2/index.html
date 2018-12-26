@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <div id="app">
+    <div v-if="home">
+      <h1>You think you've got a designer's eye ?</h1>
+      <p>Test your skills and try to guess which font is displayed !</p>
+      <a href="#" v-on:click="startQuiz">PLAY</a>
+    </div>
+    <div v-if="quiz">
+      <question :question="questions[currentQuestion]" v-on:answer="handleAnswer" :question-number="currentQuestion+1" :all-questions="allQuestions"></question>
+    </div>
+    <div v-if="score">
+      <p>You got {{correct}} right out of {{questions.length}} questions.</p>
+      <p>{{message}}</p>
+      <a href="#" v-on:click="reload">HOME</a>
+    </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js'></script>
+  <script>
+    var quizData = {
+      "questions": [{
+          "text": "Montserrat",
+          "type": "mc",
+          "answers": ["Montserrat", "Merryweather", "Roboto", "Oswald"],
+          "answer": "Montserrat"
+        },
+        {
+          "text": "Merryweather",
+          "type": "mc",
+          "answers": ["Montserrat", "Merryweather", "Roboto", "Oswald"],
+          "answer": "Merryweather"
+        },
+        {
+          "text": "Roboto",
+          "type": "mc",
+          "answers": ["Montserrat", "Merryweather", "Roboto", "Oswald"],
+          "answer": "Roboto"
+        },
+        {
+          "text": "Oswald",
+          "type": "mc",
+          "answers": ["Montserrat", "Merryweather", "Roboto", "Oswald"],
+          "answer": "Oswald"
+        }
+      ]
+    }
+
+    Vue.component('question', {
+      template: `
+          <div>
+            <strong>{{ questionNumber }}/{{allQuestions}}</strong><br/>
+            <strong>{{ question.text }} </strong>
+
+            <div v-if="question.type === 'tf'">
+              <input type="radio" name="currentQuestion" id="trueAnswer" v-model="answer" value="t"><label for="trueAnswer">True</label><br/>
+              <input type="radio" name="currentQuestion" id="falseAnswer" v-model="answer" value="f"><label for="falseAnswer">False</label><br/>
+            </div>
+
+            <div v-if="question.type === 'mc'">
+              <div v-for="(mcanswer,index) in question.answers">
+              <input type="radio" :id="'answer'+index" name="currentQuestion" v-model="answer" :value="mcanswer"><label :for="'answer'+index">{{mcanswer}}</label><br/>
+              </div>
+            </div>
+            <a href="#" v-on:click="submitAnswer">NEXT</a>
+          </div>
+        `,
+      data() {
+        return {
+          answer: ''
+        }
+      },
+      props: ['question', 'question-number', 'all-questions'],
+      methods: {
+        submitAnswer: function() {
+          this.$emit('answer', {
+            answer: this.answer
+          });
+          this.answer = null;
+        }
+      }
+    });
+
+    var app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          home: false,
+          quiz: false,
+          score: false,
+          questions: [],
+          currentQuestion: 0,
+          allQuestions: 0,
+          answers: [],
+          correct: 0,
+          message: '',
+          head : '',
+        }
+      },
+      created() {
+        var res = quizData;
+        this.questions = res.questions;
+        this.allQuestions = res.questions.length;
+        this.home = true;
+      },
+      methods: {
+        startQuiz() {
+          this.home = false;
+          this.quiz = true;
+        },
+        handleAnswer(e) {
+          this.answers[this.currentQuestion] = e.answer;
+          if ((this.currentQuestion + 1) === this.questions.length) {
+            this.handleResults();
+            this.quiz = false;
+            this.score = true;
+          } else {
+            this.currentQuestion++;
+          }
+        },
+        handleResults() {
+          this.questions.forEach((a, index) => {
+            if (this.answers[index] === a.answer) this.correct++;
+          });
+          switch (this.correct) {
+            case 0:
+              this.head = "It Sucks";
+              this.message = "You'd better leave design forever";
+              break;
+            case 1:
+              this.head = "Eww";
+              this.message = "INCREDIBLE ! Go back to work you dumb";
+
+              break;
+            case 2:
+              this.head = "Not impressed";
+              this.message = "Nice for a young designer. Otherwise it sucks";
+              break;
+            case 3:
+              this.head = "Not bad";
+              this.message = "Argh ! You were so close !";
+              break;
+            case 4:
+              this.head = "Perfect";
+              this.message = "WOW ! That would be excellent if you hadn't done the test 35 times...";
+              break;
+          }
+        },
+        reload() {
+          this.score = false;
+          this.home = true;
+          this.currentQuestion = 0;
+          this.correct = 0;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

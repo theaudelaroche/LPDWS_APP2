@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>What Font</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700|Raleway:300,400,500" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+
+      <section class="noGame-state home-state" v-if="home">
+          <div class="noGame-container">
+            <h1>You think you've got a designer's eye ?</h1>
+            <p>Test your skills and try to guess which font is displayed !</p>
+          </div>
+          <div class="btn-container">
+            <a href="#" v-on:click="startQuiz">
+              <span>PLAY</span>
+              <span class="arrow-container"></span>
+            </a>
+          </div>
+      </section>
+
+      <section class="game-state" v-if="quiz">
+        <div class="overlay"></div>
+        <question :question="questions[currentQuestion]" v-on:answer="handleAnswer" :question-number="currentQuestion+1" :all-questions="allQuestions"></question>
+      </section>
+
+      <section class="noGame-state score-state" v-if="score">
+        <div class="noGame-container">
+          <h2>{{correct}}/{{questions.length}}</h2>
+          <h3>{{head}}</h3>
+          <p>{{message}}</p>
+        </div>
+        <div class="btn-container">
+          <a href="#" v-on:click="reload">
+            <span>HOME</span>
+            <span class="arrow-container"></span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js'></script>
+    <script src="assets/js/app.js">
+
+    </script>
+  </body>
+</html>

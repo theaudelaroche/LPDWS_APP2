@@ -1,0 +1,197 @@
+.overlay{
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 40vh;
+  background-color: #432DFF;
+  z-index: -1;
+}
+
+.game-state{
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.game-state .main{
+  width: 90vw;
+}
+
+.game-state header{
+  color: white;
+  font-family: 'Oswald';
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.game-screen{
+  overflow: hidden;
+  background-color: white;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.progress-bar{
+  width: 20%;
+  background-color: #FF3E8B;
+  height: 10px;
+}
+
+.question{
+  width: 100%;
+  height: 33vh;
+}
+
+.answers{
+  font-family: 'Oswald';
+  font-size: 36px;
+  color : #432DFF;
+}
+
+.answer{
+}
+
+input[type='checkbox']{
+  display: none;
+}
+
+label{
+  cursor: pointer;
+    width: 90vw;
+    display: block;
+    padding: 10px 20px;
+}
+
+input[type='checkbox']:checked+label{
+  color: white;
+  background-color:#432DFF;
+}
+
+
+.game-state .btn-container {
+  box-sizing: border-box;
+  font-family: 'Oswald', sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  background-color: #FF3E8B;
+  color: white;
+  width: 100%;
+  padding : 20px;
+}
+
+.game-state .btn-container a .arrow-container{
+  display: block;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+}
+
+.game-state .btn-container a{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+@media all and (min-width:700px) {
+
+  .game-state{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .overlay{
+    display: none;
+  }
+
+  .game-state .main{
+    width: 500px;
+  }
+
+  .game-state header{
+    color: white;
+    font-family: 'Oswald';
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .game-screen{
+    overflow: hidden;
+    background-color: white;
+    margin-bottom: 20px;
+    height: 50vh;
+    position: relative;
+  }
+
+  .progress-bar{
+    width: 20%;
+    background-color: #FF3E8B;
+    height: 10px;
+  }
+
+  .answers{
+    position: absolute;
+    bottom: 0;
+    font-family: 'Oswald';
+    font-size: 36px;
+    color : #432DFF;
+  }
+
+  .answer{
+  }
+
+  input[type='checkbox']{
+    display: none;
+  }
+
+  label{
+    cursor: pointer;
+      width: 90vw;
+      display: block;
+      padding: 10px;
+  }
+
+  input[type='checkbox']:checked+label{
+    color: white;
+    background-color:#432DFF;
+  }
+
+
+  .game-state .btn-container {
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    background-color: #FF3E8B;
+    color: white;
+    width: 100%;
+    padding : 20px;
+  }
+
+  .game-state .btn-container a .arrow-container{
+    display: block;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+  }
+
+  .game-state .btn-container a{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+  }
+}
