@@ -27,7 +27,7 @@
 
       <section class="game-state" v-if="quiz">
         <div class="overlay"></div>
-        <question :question="questions[currentQuestion]" v-on:answer="handleAnswer" :question-number="currentQuestion+1" :all-questions="allQuestions"></question>
+        <question :question="questions[currentQuestion]" v-on:answer="handleAnswer" :question-number="currentQuestion+1" :all-questions="allQuestions" :percent="percent"></question>
       </section>
 
       <section class="noGame-state score-state" v-if="score">

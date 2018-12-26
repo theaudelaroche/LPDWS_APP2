@@ -36,9 +36,10 @@
 }
 
 .progress-bar{
-  width: 20%;
   background-color: #FF3E8B;
   height: 10px;
+  transition: .3s width ease;
+  width: 0;
 }
 
 .question{

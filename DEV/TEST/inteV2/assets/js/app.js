@@ -33,7 +33,7 @@ Vue.component('question', {
       <span class="question-number">{{questionNumber}}/{{allQuestions}}</span>
     </header>
     <div class="game-screen">
-      <div class="progress-bar"></div>
+      <div class="progress-bar" id="bar"></div>
       <div class="question">
         <p>{{ question.text }} </p>
       </div>
@@ -61,7 +61,7 @@ Vue.component('question', {
       answer: ''
     }
   },
-  props: ['question', 'question-number', 'all-questions'],
+  props: ['question', 'question-number', 'all-questions', 'percent'],
   methods: {
     submitAnswer: function() {
       this.$emit('answer', {
@@ -86,6 +86,7 @@ var app = new Vue({
       correct: 0,
       message: '',
       head : '',
+      percent : 0,
     }
   },
   created() {
@@ -102,11 +103,17 @@ var app = new Vue({
     handleAnswer(e) {
       this.answers[this.currentQuestion] = e.answer;
       if ((this.currentQuestion + 1) === this.questions.length) {
-        this.handleResults();
-        this.quiz = false;
-        this.score = true;
+        document.getElementById('bar').style.width = "100%";
+        // WAIT FOR THE PROGRESS BAR TO FILL CONTAINER TO CHANGE APP PAGE
+        setTimeout(function(){
+          app.handleResults();
+          app.quiz = false;
+          app.score = true;
+        }, 500);
       } else {
         this.currentQuestion++;
+        this.percent = (100 * this.currentQuestion+1)/this.questions.length;
+        document.getElementById('bar').style.width = this.percent + "%";
       }
     },
     handleResults() {
@@ -121,7 +128,6 @@ var app = new Vue({
         case 1:
           this.head = "Eww";
           this.message = "INCREDIBLE ! Go back to work you dumb";
-
           break;
         case 2:
           this.head = "Not impressed";
