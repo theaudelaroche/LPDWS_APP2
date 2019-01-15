@@ -41,7 +41,11 @@
   background-color: #FF3E8B;
   color: white;
   width: 90%;
-  padding : 20px;
+  transition: .3s ease;
+}
+
+.noGame-state .btn-container:hover {
+  background-color: #d03673;
 }
 
 .noGame-state .btn-container a .arrow-container{
@@ -63,6 +67,7 @@
   align-items: center;
   text-decoration: none;
   color: white;
+  padding: 20px;
 }
 
 @media all and (min-width : 700px) {
@@ -92,6 +97,5 @@
   .noGame-state .btn-container {
     font-size: 36px;
     width: 500px;
-    padding : 20px;
   }
 }

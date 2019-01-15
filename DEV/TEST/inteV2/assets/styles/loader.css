@@ -1,0 +1,16 @@
+.loader-wrapper {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    background: #fff;
+    z-index: 1;
+}
+
+#logocomplex {
+    width: 50vw;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}

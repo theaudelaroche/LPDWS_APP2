@@ -47,6 +47,13 @@
   height: 33vh;
 }
 
+.question img {
+  width: 300px;
+  position: absolute;
+  top: -70px;
+  left: 10px;
+}
+
 .answers{
   font-family: 'Oswald';
   font-size: 36px;
@@ -54,6 +61,7 @@
 }
 
 .answer{
+
 }
 
 input[type='radio']{
@@ -62,9 +70,9 @@ input[type='radio']{
 
 label{
   cursor: pointer;
-    width: 90vw;
-    display: block;
-    padding: 10px 20px;
+  width: 90vw;
+  display: block;
+  padding: 10px 20px;
 }
 
 input[type='radio']:checked+label{
@@ -72,6 +80,10 @@ input[type='radio']:checked+label{
   background-color:#432DFF;
 }
 
+input[type='radio']:hover+label {
+  color: white;
+  background-color: #432DFF;
+}
 
 .game-state .btn-container {
   box-sizing: border-box;
@@ -81,7 +93,10 @@ input[type='radio']:checked+label{
   background-color: #FF3E8B;
   color: white;
   width: 100%;
-  padding : 20px;
+}
+
+.game-state .btn-container:hover {
+  background-color: #d03673;
 }
 
 .game-state .btn-container a .arrow-container{
@@ -103,6 +118,7 @@ input[type='radio']:checked+label{
   align-items: center;
   text-decoration: none;
   color: white;
+  padding : 20px;
 }
 
 @media all and (min-width:700px) {
@@ -163,9 +179,9 @@ input[type='radio']:checked+label{
 
   label{
     cursor: pointer;
-      width: 90vw;
-      display: block;
-      padding: 10px;
+    width: 90vw;
+    display: block;
+    padding: 10px;
   }
 
   input[type='checkbox']:checked+label{

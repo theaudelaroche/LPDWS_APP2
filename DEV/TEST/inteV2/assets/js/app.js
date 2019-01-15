@@ -1,25 +1,25 @@
 // JSON MUST LOOK LIKE THIS
 var quizData = {
   "questions": [{
-      "text": "Montserrat",
+      "text": "./assets/images/montserrat.svg",
       "type": "mc",
       "answers": ["Montserrat", "Merryweather", "Roboto", "Oswald"],
       "answer": "Montserrat"
     },
     {
-      "text": "Merryweather",
+      "text": "./assets/images/merriweather.svg",
       "type": "mc",
       "answers": ["Montserrat", "Merryweather", "Roboto", "Oswald"],
       "answer": "Merryweather"
     },
     {
-      "text": "Roboto",
+      "text": "./assets/images/roboto.svg",
       "type": "mc",
       "answers": ["Montserrat", "Merryweather", "Roboto", "Oswald"],
       "answer": "Roboto"
     },
     {
-      "text": "Oswald",
+      "text": "./assets/images/oswald.svg",
       "type": "mc",
       "answers": ["Montserrat", "Merryweather", "Roboto", "Oswald"],
       "answer": "Oswald"
@@ -37,7 +37,7 @@ Vue.component('question', {
     <div class="game-screen">
       <div class="progress-bar" id="bar"></div>
       <div class="question">
-        <p>{{ question.text }} </p>
+      <img :src="question.text" alt="guess the font">
       </div>
       <div class="answers">
         <div v-for="(mcanswer,index) in question.answers">
@@ -92,6 +92,7 @@ var app = new Vue({
       message: '',
       head : '',
       percent : 0,
+      show : true
     }
   },
   //LOAD JSON
