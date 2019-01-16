@@ -93,6 +93,13 @@ input[type='radio']:hover+label {
   background-color: #FF3E8B;
   color: white;
   width: 100%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.game-state .btn-container.active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .game-state .btn-container:hover {

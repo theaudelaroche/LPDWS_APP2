@@ -30,7 +30,7 @@ var quizData = {
 //INITIALISE QUESTIONS COMPONENT
 Vue.component('question', {
   template: `
-  <div class="main">
+  <div v-bind:class="{ active1: animation }" class="main">
     <header>
       <span class="question-number">{{questionNumber}}/{{allQuestions}}</span>
     </header>
@@ -42,13 +42,13 @@ Vue.component('question', {
       <div class="answers">
         <div v-for="(mcanswer,index) in question.answers">
           <div class="answer">
-            <input type="radio" :id="'answer'+index" name="currentQuestion" v-model="answer" :value="mcanswer">
+            <input @click="checked" type="radio" :id="'answer'+index" name="currentQuestion" v-model="answer" :value="mcanswer">
             <label :for="'answer'+index">{{mcanswer}}</label>
           </div>
         </div>
       </div>
     </div>
-    <div class="btn-container">
+    <div v-bind:class="{ active: active }" class="btn-container">
       <a href="#" v-on:click="submitAnswer">
         <span>NEXT</span>
         <span class="arrow-container">
@@ -60,7 +60,9 @@ Vue.component('question', {
     `,
   data() {
     return {
-      answer: ''
+      answer: '',
+      active: false,
+      animation: false,
     }
   },
   // ALL DATAS NEEDED BY THE COMPONENT
@@ -72,7 +74,14 @@ Vue.component('question', {
         answer: this.answer
       });
       this.answer = null;
+      this.active = false;
+      this.animation = true;
+    },
+    checked: function(){
+      this.active = true;
+      this.animation = false;
     }
+
   }
 });
 
@@ -92,7 +101,6 @@ var app = new Vue({
       message: '',
       head : '',
       percent : 0,
-      show : true
     }
   },
   //LOAD JSON
@@ -112,7 +120,8 @@ var app = new Vue({
     handleAnswer(e) {
       //PUSH ANSWER
       this.answers[this.currentQuestion] = e.answer;
-      //WHEN LAST QUESTIO
+
+      //WHEN LAST QUESTION
       if ((this.currentQuestion + 1) === this.questions.length) {
         document.getElementById('bar').style.width = "100%";
         // WAIT FOR THE PROGRESS BAR TO FILL CONTAINER TO CHANGE APP PAGE

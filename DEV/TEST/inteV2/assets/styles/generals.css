@@ -6,4 +6,5 @@ body{
 }
 #app{
   overflow: hidden;
+  position: relative;
 }
